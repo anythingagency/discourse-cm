@@ -1,7 +1,3 @@
-
-HELLO I have {{notifications}} notifications <button {{action "myAction"}}>Action</button>
-
-
 {{#if this.isShowing}}
 <div class="c-notice">
   <button class="c-notice__dismiss" {{action "dismiss"}}>
@@ -14,5 +10,10 @@ HELLO I have {{notifications}} notifications <button {{action "myAction"}}>Actio
     <h1 class="c-notice__content__heading">{{ i18n 'cm_notice.chat_title' }}</h1>
     <p class="c-notice__content__message">{{ i18n 'cm_notice.chat_message' }}</p>
   </div>
+</div>
+{{else}}
+<div class="c-welcome">
+  <h2 class="c-welcome__heading">Welcome to Channel Mum Chat</h2>
+  <p>Welcome to Channel Mum Support Groups. A place to be with other mums where you can feel safe to have a little more open 'mum' conversation.</p>
 </div>
 {{/if}}
