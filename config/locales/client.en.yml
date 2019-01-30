@@ -1,3 +1,7 @@
 en:
   js:
     discourse_cm:
+      
+    cm_notice:
+      chat_title: "Chat"
+      chat_message: "A place to create and respond to group messages, get expert advice and make friends along the way."
