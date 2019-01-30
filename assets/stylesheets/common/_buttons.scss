@@ -29,6 +29,7 @@ button#create-topic span {
   line-height: 20px;
 }
 
-a.remove {
+div.ac-wrap div.item a.remove, .remove-link {
   background: $color-grey;
+  border: 1px solid $color-grey;
 }
