@@ -5,32 +5,31 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 export default {
 
   setupComponent(args, component) {
-    
-    const checkNotifications = function() {
-      
-      ajax(`https://api.cm.anything.agency/notifications/anything`).then((response) => {
-        component.set('notifications', response.data.total);
-      });
-
-      setTimeout(checkNotifications, 10000);
-    }
-
-    if (this.currentUser) {
-      
-      this.set('user', true);
-      this.set('userAvatar', this.currentUser.avatar_template.replace('{size}', 64));
-
-      checkNotifications();
-    }
-    else {
-
-      this.set('user', false);
-    }
-
-    
-
-    // fix position of sticky header
+  
     withPluginApi("0.8.24", api => {
+      const siteSettings = api.container.lookup("site-settings:main");
+      const notificationUrl = siteSettings.discourse_cm_notification_url + (this.currentUser ? this.currentUser.username : '');
+      
+      const checkNotifications = function(siteSettings) {
+
+        ajax(notificationUrl).then((response) => {
+          component.set('notifications', response.data.total);
+        });
+  
+        setTimeout(checkNotifications, 10000, notificationUrl);
+      }
+  
+      if (this.currentUser) {
+        
+        this.set('user', true);
+        this.set('userAvatar', this.currentUser.avatar_template.replace('{size}', 64));
+  
+        checkNotifications(notificationUrl);
+      }
+      else {
+        this.set('user', false);
+      }
+
       api.modifyClass('component:site-header', {
 
         afterRender() {
@@ -41,6 +40,15 @@ export default {
         }
         
       });
+    });
+    
+    
+
+    
+
+    // fix position of sticky header
+    withPluginApi("0.8.24", api => {
+      
     });
 
 

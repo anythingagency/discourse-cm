@@ -9,8 +9,6 @@ import { ajax } from "discourse/lib/ajax";
 
 import { h } from "virtual-dom";
 
-console.log('plugin header.js');
-
 const dropdown = {
   buildClasses(attrs) {
     if (attrs.active) {

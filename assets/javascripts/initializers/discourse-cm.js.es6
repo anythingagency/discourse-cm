@@ -36,7 +36,9 @@ function initializeDiscourseCm(api) {
 export default {
   name: "discourse-cm",
 
-  initialize() {
-    withPluginApi("0.8.24", initializeDiscourseCm);
+  initialize(container) {
+    const siteSettings = container.lookup("site-settings:main");
+    if (siteSettings.discourse_cm_enabled)
+      withPluginApi("0.8.24", initializeDiscourseCm);
   }
 };

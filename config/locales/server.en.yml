@@ -1,3 +1,4 @@
 en:
   site_settings:
-    discourse_cm_enabled: "Enable DiscourseCm plugin"
+    discourse_cm_enabled: "Enable CM plugin"
+    discourse_cm_notification_url: "API url for notifications"
