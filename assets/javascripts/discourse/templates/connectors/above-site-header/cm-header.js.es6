@@ -10,21 +10,24 @@ export default {
       const siteSettings = api.container.lookup("site-settings:main");
       const notificationUrl = siteSettings.discourse_cm_notification_url + (this.currentUser ? this.currentUser.username : '');
       
-      const checkNotifications = function(siteSettings) {
+      const checkNotifications = function() {
 
         ajax(notificationUrl).then((response) => {
           component.set('notifications', response.data.total);
         });
   
-        setTimeout(checkNotifications, 10000, notificationUrl);
+        setTimeout(checkNotifications, 10000);
       }
   
       if (this.currentUser) {
         
         this.set('user', true);
         this.set('userAvatar', this.currentUser.avatar_template.replace('{size}', 64));
-  
-        checkNotifications(notificationUrl);
+        
+        if (siteSettings.discourse_cm_notification_enabled) {
+          checkNotifications();
+        }
+        
       }
       else {
         this.set('user', false);
@@ -42,15 +45,6 @@ export default {
       });
     });
     
-    
-
-    
-
-    // fix position of sticky header
-    withPluginApi("0.8.24", api => {
-      
-    });
-
 
   },
 

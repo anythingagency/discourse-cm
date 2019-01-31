@@ -2,19 +2,8 @@ import { ajax } from 'discourse/lib/ajax';
 
 export default {
 
-  
-
   setupComponent(args, component) {
-    // component.set('today', new Date());
-    // component.set('notifications', '100');
-    // component.set('isShowing', true);
-
-
-    component.setProperties({
-      today: new Date(),
-      notifications: '200',
-      isShowing: true
-    })
+    this.set("isShowing", (!$.cookie("welcome") ? true : false))
   },
 
   shouldRender(args, component) {
@@ -23,10 +12,9 @@ export default {
 
   actions: {
     dismiss(component) {
-      // this.set("isShowing", false);
-      ajax(`/cm/notice-dismiss`).then((data) => {
-        console.log(data);
+      ajax(`/cm/notice-dismiss`).then((data) => {;
         this.set("isShowing", false);
+        $.cookie("welcome", true);
       });
     }
   }

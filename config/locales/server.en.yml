@@ -1,4 +1,5 @@
 en:
   site_settings:
     discourse_cm_enabled: "Enable CM plugin"
+    discourse_cm_notification_enabled: "Check CM API for notifications"
     discourse_cm_notification_url: "API url for notifications"

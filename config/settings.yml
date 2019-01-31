@@ -2,6 +2,9 @@ plugins:
   discourse_cm_enabled:
     default: true
     client: true
+  discourse_cm_notification_enabled:
+    default: true
+    client: true
   discourse_cm_notification_url:
     default: "https://api.cm.anything.agency/notifications/"
     client: true
