@@ -1,5 +1,5 @@
-# name: DiscoursePluginCm
-# about:
+# name: discourse-cm
+# about: 
 # version: 0.2
 # authors:
 # url: https://github.com/
