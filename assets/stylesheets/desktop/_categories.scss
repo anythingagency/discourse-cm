@@ -46,56 +46,11 @@
   }
 }
 
-.category-box:nth-child(9n + 1) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-1-lg.png");
-  }
-}
-
-.category-box:nth-child(9n + 2) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-2-lg.png");
-  }
-}
-
-.category-box:nth-child(9n + 3) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-3-lg.png");
-  }
-}
-
-.category-box:nth-child(9n + 4) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-4-lg.png");
-  }
-}
-
-.category-box:nth-child(9n + 5) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-5-lg.png")
-  }
-}
-
-.category-box:nth-child(9n + 6) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-6-lg.png")
-  }
-}
-
-.category-box:nth-child(9n + 7) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-7-lg.png")
-  }
-}
-
-.category-box:nth-child(9n + 8) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-8-lg.png")
-  }
-}
-
-.category-box:nth-child(9n + 9) {
-  .category-box-inner {
-    background-image: url("#{$asset-path-images}decor-9-lg.png")
+// Category background images
+@for $i from 1 through 9 {
+  .category-box:nth-child(9n + #{$i}) {
+    .category-box-inner {
+      background-image: url("#{$asset-path-images}decor-#{$i}-lg.png");
+    }
   }
 }

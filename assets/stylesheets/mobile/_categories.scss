@@ -65,74 +65,13 @@
   }
 }
 
-.category-list-item:nth-child(9n + 1) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-1-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 2) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-2-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 3) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-3-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 4) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-4-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 5) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-5-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 6) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-6-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 7) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-7-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 8) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-8-sm.png");
-    }
-  }
-}
-
-.category-list-item:nth-child(9n + 9) {
-  tr {
-    &:nth-child(1) {
-      background-image: url("#{$asset-path-images}decor-9-sm.png");
+// Category background images
+@for $i from 1 through 9 {
+  .category-list-item:nth-child(9n + #{$i}) {
+    tr {
+      &:nth-child(1) {
+        background-image: url("#{$asset-path-images}decor-#{$i}-sm.png");
+      }
     }
   }
 }
