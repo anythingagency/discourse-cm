@@ -19,7 +19,16 @@ function initializeDiscourseCm(api) {
           lastLoadedPost === post &&
           postStream.get("canAppendMore")
         ) {
-          api.addGTMPageChangedCallback( gtmData => gtmData.locale = I18n.currentLocale() )
+          let gtmData = {
+            event: "virtualPageView",
+            page: {
+              title: Discourse.get("_docTitle"),
+              url: Discourse.getURL(post.get("url"))
+            }
+          };
+
+          api.addGTMPageChangedCallback( gtmData )
+          console.log(gtmData);
         }
 
         this._super(...arguments);
@@ -40,7 +49,16 @@ function initializeDiscourseCm(api) {
         }
   
         if (firstLoadedPost && firstLoadedPost === post) {
-          api.addGTMPageChangedCallback( gtmData => gtmData.locale = I18n.currentLocale() )
+          let gtmData = {
+            event: "virtualPageView",
+            page: {
+              title: Discourse.get("_docTitle"),
+              url: Discourse.getURL(post.get("url"))
+            }
+          };
+
+          api.addGTMPageChangedCallback( gtmData )
+          console.log(gtmData);
         }
 
         this._super(...arguments);
