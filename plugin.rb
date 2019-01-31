@@ -1,13 +1,13 @@
 # name: DiscoursePluginCm
 # about:
-# version: 0.1
+# version: 0.2
 # authors:
 # url: https://github.com/
 
 
 enabled_site_setting :discourse_cm_enabled
 
-PLUGIN_NAME ||= "DiscourseCm".freeze
+PLUGIN_NAME ||= "discourse-cm".freeze
 
 # Style Assets
 register_asset "stylesheets/common/common.scss"
