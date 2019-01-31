@@ -47,6 +47,7 @@
 }
 
 // Category background images
+// - 9 images in total
 @for $i from 1 through 9 {
   .category-box:nth-child(9n + #{$i}) {
     .category-box-inner {
