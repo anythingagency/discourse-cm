@@ -26,9 +26,10 @@ function initializeDiscourseCm(api) {
               url: Discourse.getURL(post.get("url"))
             }
           };
-
-          api.addGTMPageChangedCallback( gtmData )
-          console.log(gtmData);
+          
+          if (typeof window.dataLayer !== "undefined") {
+            window.dataLayer.push(gtmData);
+          }
         }
 
         this._super(...arguments);
@@ -57,8 +58,9 @@ function initializeDiscourseCm(api) {
             }
           };
 
-          api.addGTMPageChangedCallback( gtmData )
-          console.log(gtmData);
+          if (typeof window.dataLayer !== "undefined") {
+            window.dataLayer.push(gtmData);
+          }
         }
 
         this._super(...arguments);
