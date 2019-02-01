@@ -13,7 +13,7 @@ export default {
       const checkNotifications = function() {
 
         ajax(notificationUrl).then((response) => {
-          component.set('notifications', response.data.total);
+          component.set('notifications', response.data.total_new);
         });
   
         setTimeout(checkNotifications, 10000);

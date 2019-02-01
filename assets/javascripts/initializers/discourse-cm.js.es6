@@ -9,6 +9,7 @@ function initializeDiscourseCm(api) {
     
     actions: {
       bottomVisibleChanged(event) {
+        
         const { post, refresh } = event;
         
         const postStream = this.get("model.postStream");
