@@ -5,32 +5,68 @@ function initializeDiscourseCm(api) {
   // see app/assets/javascripts/discourse/lib/plugin-api
   // for the functions available via the api object
 
+  api.modifyClass('controller:topic', {
+    
+    actions: {
+      bottomVisibleChanged(event) {
+        const { post, refresh } = event;
+        
+        const postStream = this.get("model.postStream");
+        const lastLoadedPost = postStream.get("posts.lastObject");
+
+        if (
+          lastLoadedPost &&
+          lastLoadedPost === post &&
+          postStream.get("canAppendMore")
+        ) {
+          let gtmData = {
+            event: "virtualPageView",
+            page: {
+              title: Discourse.get("_docTitle"),
+              url: Discourse.getURL(post.get("url"))
+            }
+          };
+
+          api.addGTMPageChangedCallback( gtmData )
+          console.log(gtmData);
+        }
+
+        this._super(...arguments);
+      },
   
-
+      topVisibleChanged(event) {
+        const { post, refresh } = event;
+        
+        if (!post) {
+          return;
+        }
   
+        const postStream = this.get("model.postStream");
+        const firstLoadedPost = postStream.get("posts.firstObject");
 
-  api.modifyClass('component:scrolling-post-stream', {
-    _lastPost: null,
+        if (post.get && post.get("post_number") === 1) {
+          return;
+        }
+  
+        if (firstLoadedPost && firstLoadedPost === post) {
+          let gtmData = {
+            event: "virtualPageView",
+            page: {
+              title: Discourse.get("_docTitle"),
+              url: Discourse.getURL(post.get("url"))
+            }
+          };
 
-    scrolled() {
-      this._super();
-      if (this._lastPost == null) {
-        this._lastPost = this._currentPost;
-      }
-      if (this._lastPost !== this._currentPost) {
-        console.log('change');
-        this._lastPost = this._currentPost;
+          api.addGTMPageChangedCallback( gtmData )
+          console.log(gtmData);
+        }
+
+        this._super(...arguments);
       }
     }
+    
   });
 
-
-
-  api.onAppEvent('topic:current-post-changed', (post) => {
-    console.log('change topic');
-  });
-
-  
 }
 
 export default {
