@@ -30,7 +30,7 @@
     border-radius: 100%;
     border: .125rem solid hsla(0,0%,100%,.4);
     display: flex;
-    font-family: sans-serif;
+    font-family: F37 Ginger, sans-serif;
     justify-content: center;
     margin: 0 0 0 .9375rem;
     padding: 0;
@@ -51,6 +51,18 @@
 
 .c-notifications-button__icon {
     height: 1.0625rem;
+}
+
+.c-user-button--logged-out {
+  border-radius: 1.125rem;
+  color: #fff;
+  font-family: F37 Ginger,sans-serif;
+  font-size: .6875rem;
+  font-weight: 700;
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-decoration: none;
 }
 
 .c-notifications-button__count {
