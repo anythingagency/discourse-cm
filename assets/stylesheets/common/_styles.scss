@@ -16,3 +16,9 @@
   clip: rect(0,0,0,0);
   border: 0;
 }
+
+// Hide site statistics (about)
+//
+.about.stats {
+  display: none;
+}

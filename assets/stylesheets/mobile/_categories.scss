@@ -65,6 +65,17 @@
   }
 }
 
+// Additional class for handle 'more' link
+//
+.category-list-item-footer {
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    flex: 1 0 0;
+  }
+}
+
 // Category background images
 // - 9 images in total
 @for $i from 1 through 9 {
