@@ -30,3 +30,7 @@ body:not(.crawler) {
         display: none;
     }
 }
+
+body.crawler>header {
+  position: unset;
+}
