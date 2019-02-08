@@ -22,3 +22,11 @@
 .about.stats {
   display: none;
 }
+
+// Crawler header
+//
+body:not(.crawler) {
+    #cm-crawler-header {
+        display: none;
+    }
+}
