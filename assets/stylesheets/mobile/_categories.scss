@@ -52,6 +52,11 @@
       }
     }
 
+    .posts {
+      width: auto;
+      font-size: $category-posts-font-size;
+    }
+
     .category-topic-link {
       display: flex;
       justify-content: space-between;
