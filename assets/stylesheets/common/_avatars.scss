@@ -19,14 +19,6 @@
   }
 }
 
-// This element has padding on top which has to be accounted for
-.topic-avatar {
-  &:after {
-    top: 15px;
-    height: calc(100% - 15px);
-  }
-}
-
 .user-profile-avatar {
   margin-right: $spacer;
   margin-bottom: $spacer/2;
