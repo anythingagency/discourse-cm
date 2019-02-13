@@ -30,12 +30,12 @@
   font-family: 'Work Sans';
   font-weight: normal;
   font-style: normal;
-  src: url('#{$asset-path-fonts}work-sans.eot'); /* IE9 Compat Modes */
-  src: url('#{$asset-path-fonts}work-sans.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$asset-path-fonts}work-sans.woff2') format('woff2'), /* Super Modern Browsers */
-       url('#{$asset-path-fonts}work-sans.woff') format('woff'), /* Pretty Modern Browsers */
-       url('#{$asset-path-fonts}work-sans.ttf') format('truetype'),
-       url('#{$asset-path-fonts}work-sans.svg') format('svg');
+  src: url('#{$asset-path-fonts}work-sans/work-sans.eot'); /* IE9 Compat Modes */
+  src: url('#{$asset-path-fonts}work-sans/work-sans.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('#{$asset-path-fonts}work-sans/work-sans.woff2') format('woff2'), /* Super Modern Browsers */
+       url('#{$asset-path-fonts}work-sans/work-sans.woff') format('woff'), /* Pretty Modern Browsers */
+       url('#{$asset-path-fonts}work-sans/work-sans.ttf') format('truetype'),
+       url('#{$asset-path-fonts}work-sans/work-sans.svg') format('svg');
 }
 
 html {
