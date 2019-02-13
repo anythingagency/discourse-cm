@@ -2,41 +2,19 @@
 // Typography
 // ========================================
 
-// @font-face {
-//   font-family: 'Gilroy';
-//   font-weight: normal;
-//   font-style: normal;
-//   src: url('#{$asset-path-fonts}f37ginger.eot'); /* IE9 Compat Modes */
-//   src: url('#{$asset-path-fonts}f37ginger.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-//        url('#{$asset-path-fonts}f37ginger.woff2') format('woff2'), /* Super Modern Browsers */
-//        url('#{$asset-path-fonts}f37ginger.woff') format('woff'), /* Pretty Modern Browsers */
-//        url('#{$asset-path-fonts}f37ginger.ttf') format('truetype'),
-//        url('#{$asset-path-fonts}f37ginger.svg') format('svg');
-// }
+// Font face code if needed
 //
 // @font-face {
-//   font-family: 'Gilroy';
-//   font-weight: bold;
+//   font-family: 'Font';
+//   font-weight: normal;
 //   font-style: normal;
-//   src: url('#{$asset-path-fonts}f37ginger-bold.eot'); /* IE9 Compat Modes */
-//   src: url('#{$asset-path-fonts}f37ginger-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-//        url('#{$asset-path-fonts}f37ginger-bold.woff2') format('woff2'), /* Super Modern Browsers */
-//        url('#{$asset-path-fonts}f37ginger-bold.woff') format('woff'), /* Pretty Modern Browsers */
-//        url('#{$asset-path-fonts}f37ginger-bold.ttf') format('truetype'),
-//        url('#{$asset-path-fonts}f37ginger-bold.svg') format('svg');
+//   src: url(''); /* IE9 Compat Modes */
+//   src: url('') format('embedded-opentype'), /* IE6-IE8 */
+//        url('') format('woff2'), /* Super Modern Browsers */
+//        url('') format('woff'), /* Pretty Modern Browsers */
+//        url('') format('truetype'),
+//        url('') format('svg');
 // }
-
-@font-face {
-  font-family: 'Work Sans';
-  font-weight: normal;
-  font-style: normal;
-  src: url('#{$asset-path-fonts}work-sans/work-sans.eot'); /* IE9 Compat Modes */
-  src: url('#{$asset-path-fonts}work-sans/work-sans.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$asset-path-fonts}work-sans/work-sans.woff2') format('woff2'), /* Super Modern Browsers */
-       url('#{$asset-path-fonts}work-sans/work-sans.woff') format('woff'), /* Pretty Modern Browsers */
-       url('#{$asset-path-fonts}work-sans/work-sans.ttf') format('truetype'),
-       url('#{$asset-path-fonts}work-sans/work-sans.svg') format('svg');
-}
 
 html {
   -webkit-font-smoothing: antialiased;
