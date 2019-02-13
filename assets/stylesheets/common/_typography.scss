@@ -2,29 +2,29 @@
 // Typography
 // ========================================
 
-@font-face {
-  font-family: 'F37 Ginger';
-  font-weight: normal;
-  font-style: normal;
-  src: url('#{$asset-path-fonts}f37ginger.eot'); /* IE9 Compat Modes */
-  src: url('#{$asset-path-fonts}f37ginger.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$asset-path-fonts}f37ginger.woff2') format('woff2'), /* Super Modern Browsers */
-       url('#{$asset-path-fonts}f37ginger.woff') format('woff'), /* Pretty Modern Browsers */
-       url('#{$asset-path-fonts}f37ginger.ttf') format('truetype'),
-       url('#{$asset-path-fonts}f37ginger.svg') format('svg');
-}
-
-@font-face {
-  font-family: 'F37 Ginger';
-  font-weight: bold;
-  font-style: normal;
-  src: url('#{$asset-path-fonts}f37ginger-bold.eot'); /* IE9 Compat Modes */
-  src: url('#{$asset-path-fonts}f37ginger-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('#{$asset-path-fonts}f37ginger-bold.woff2') format('woff2'), /* Super Modern Browsers */
-       url('#{$asset-path-fonts}f37ginger-bold.woff') format('woff'), /* Pretty Modern Browsers */
-       url('#{$asset-path-fonts}f37ginger-bold.ttf') format('truetype'),
-       url('#{$asset-path-fonts}f37ginger-bold.svg') format('svg');
-}
+// @font-face {
+//   font-family: 'Gilroy';
+//   font-weight: normal;
+//   font-style: normal;
+//   src: url('#{$asset-path-fonts}f37ginger.eot'); /* IE9 Compat Modes */
+//   src: url('#{$asset-path-fonts}f37ginger.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('#{$asset-path-fonts}f37ginger.woff2') format('woff2'), /* Super Modern Browsers */
+//        url('#{$asset-path-fonts}f37ginger.woff') format('woff'), /* Pretty Modern Browsers */
+//        url('#{$asset-path-fonts}f37ginger.ttf') format('truetype'),
+//        url('#{$asset-path-fonts}f37ginger.svg') format('svg');
+// }
+//
+// @font-face {
+//   font-family: 'Gilroy';
+//   font-weight: bold;
+//   font-style: normal;
+//   src: url('#{$asset-path-fonts}f37ginger-bold.eot'); /* IE9 Compat Modes */
+//   src: url('#{$asset-path-fonts}f37ginger-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('#{$asset-path-fonts}f37ginger-bold.woff2') format('woff2'), /* Super Modern Browsers */
+//        url('#{$asset-path-fonts}f37ginger-bold.woff') format('woff'), /* Pretty Modern Browsers */
+//        url('#{$asset-path-fonts}f37ginger-bold.ttf') format('truetype'),
+//        url('#{$asset-path-fonts}f37ginger-bold.svg') format('svg');
+// }
 
 @font-face {
   font-family: 'Work Sans';
@@ -59,6 +59,7 @@ input, textarea, select {
 
 h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   font-family: $font-secondary;
+  letter-spacing: $heading-letter-spacing;
   color: $heading-color;
 }
 

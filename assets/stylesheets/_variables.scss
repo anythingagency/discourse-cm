@@ -36,8 +36,9 @@ $font-size-base: .875rem;
 $font-weight-base: normal;
 $line-height-base: 1.35;
 
-$heading-color: $color-black;
 $headings-font-family: $font-primary;
+$heading-letter-spacing: 0.02rem;
+$heading-color: $color-black;
 
 $h1-font-size: px-rem(18px);
 $h1-line-height: px-rem(23px);
