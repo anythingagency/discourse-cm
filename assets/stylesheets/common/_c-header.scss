@@ -17,8 +17,13 @@
 }
 
 .c-header__logo {
-    height: 1.9375rem;
+    font-size: 0;
+    line-height: 0;
     margin: 0 auto 0 0;
+
+    svg {
+        height: 1.9375rem;
+    }
 }
 
 .c-button--header {
