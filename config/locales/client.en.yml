@@ -1,7 +1,11 @@
 en:
   js:
     discourse_cm:
-      
+
     cm_notice:
-      chat_title: "Chat"
-      chat_message: "A place to create and respond to group messages, get expert advice and make friends along the way."
+      title: "Chat"
+      message: "A place to create and respond to group messages, get expert advice and make friends along the way."
+
+    cm_welcome:
+      title: "Welcome to Channel Mum Chat"
+      message: "Welcome to Channel Mum Support Groups. A place to be with other mums where you can feel safe to have a little more open 'mum' conversation."
