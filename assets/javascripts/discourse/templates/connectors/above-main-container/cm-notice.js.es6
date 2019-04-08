@@ -12,7 +12,7 @@ export default {
 
   actions: {
     dismiss(component) {
-      ajax(`/cm/notice-dismiss`).then((data) => {;
+      ajax(`/cm/notice-dismiss`).then((data) => {
         this.set("isShowing", false);
         $.cookie("welcome", true);
       });
