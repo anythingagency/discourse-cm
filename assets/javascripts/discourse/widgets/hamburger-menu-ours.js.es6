@@ -49,19 +49,21 @@ export default createWidget("hamburger-menu", {
     const links = [];
     const path = this.currentUser.get("path");
     const { currentUser, siteSettings } = this;
+
     const isAnon = currentUser.is_anonymous;
     const allowAnon =
       (siteSettings.allow_anonymous_posting &&
         currentUser.trust_level >=
           siteSettings.anonymous_posting_min_trust_level) ||
       isAnon;
-
+    
     links.push({
       label: "user.bookmarks",
       className: "user-bookmarks-link",
       icon: "bookmark",
       href: `${path}/activity/bookmarks`
     });
+
     if (siteSettings.enable_personal_messages) {
       links.push({
         label: "user.private_messages",
@@ -70,12 +72,14 @@ export default createWidget("hamburger-menu", {
         href: `${path}/messages`
       });
     }
+
     links.push({
       label: "user.preferences",
       className: "user-preferences-link",
       icon: "gear",
       href: `${path}/preferences/account`
     });
+
     if (allowAnon) {
       if (!isAnon) {
         links.push({
@@ -93,11 +97,13 @@ export default createWidget("hamburger-menu", {
         });
       }
     }
+
     return links.map(l => this.attach("link", l));
   },
 
   adminLinks() {
-    const { currentUser } = this;
+    const { currentUser, siteSettings } = this;
+    let flagsPath = siteSettings.flags_default_topics ? "topics" : "active";
 
     const links = [
       {
@@ -105,13 +111,32 @@ export default createWidget("hamburger-menu", {
         className: "admin-link",
         icon: "wrench",
         label: "admin_title"
+      },
+      {
+        href: `/admin/flags/${flagsPath}`,
+        className: "flagged-posts-link",
+        icon: "flag",
+        label: "flags_title",
+        badgeClass: "flagged-posts",
+        badgeTitle: "notifications.total_flagged",
+        badgeCount: "site_flagged_posts_count"
       }
     ];
+
+    if (currentUser.show_queued_posts) {
+      links.push({
+        route: "queued-posts",
+        className: "queued-posts-link",
+        label: "queue.title",
+        badgeCount: "post_queue_new_count",
+        badgeClass: "queued-posts"
+      });
+    }
 
     if (currentUser.admin) {
       links.push({
         href: "/admin/site_settings/category/required",
-        icon: "cog",
+        icon: "gear",
         label: "admin.site_settings.title",
         className: "settings-link"
       });
@@ -160,22 +185,6 @@ export default createWidget("hamburger-menu", {
         label: "filters.unread.title",
         title: "filters.unread.help",
         count: this.lookupCount("unread")
-      });
-    }
-
-    // Staff always see the review link. Non-staff will see it if there are items to review
-    if (
-      this.currentUser &&
-      (this.currentUser.staff || this.currentUser.reviewable_count)
-    ) {
-      links.push({
-        route: siteSettings.reviewable_default_topics
-          ? "review.topics"
-          : "review",
-        className: "review",
-        label: "review.title",
-        badgeCount: "reviewable_count",
-        badgeClass: "reviewables"
       });
     }
 
@@ -252,12 +261,6 @@ export default createWidget("hamburger-menu", {
         allCategories
           .filter(c => !categories.includes(c))
           .sort((a, b) => b.topic_count - a.topic_count)
-      );
-    }
-
-    if (!this.siteSettings.allow_uncategorized_topics) {
-      categories = categories.filter(
-        c => c.id !== this.site.uncategorized_category_id
       );
     }
 
