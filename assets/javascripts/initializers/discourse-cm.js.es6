@@ -2,8 +2,22 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
 function initializeDiscourseCm(api) {
   
-  // see app/assets/javascripts/discourse/lib/plugin-api
-  // for the functions available via the api object
+  const siteSettings = container.lookup("site-settings:main");
+
+  if (!siteSettings.discourse_cm_enabled) {
+    return;
+  }
+
+  if (siteSettings.discourse_cm_sso_redirect) {
+    if (typeof localStorage !== 'undefined') {
+      var ssoUrl = Discourse.BaseUri + '/session/sso?return_path=' + window.location.pathname;
+      if (localStorage.getItem("jwt") && !api.getCurrentUser()) {
+        if (!document.referrer.includes(ssoUrl)) {
+          window.location = ssoUrl;
+        }
+      }
+    }
+  }
 
   api.modifyClass('controller:topic', {
     
@@ -76,8 +90,6 @@ export default {
   name: "discourse-cm",
 
   initialize(container) {
-    const siteSettings = container.lookup("site-settings:main");
-    if (siteSettings.discourse_cm_enabled)
-      withPluginApi("0.8.24", initializeDiscourseCm);
+    withPluginApi("0.8.24", initializeDiscourseCm);
   }
 };

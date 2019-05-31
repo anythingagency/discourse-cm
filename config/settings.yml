@@ -9,3 +9,6 @@ plugins:
     default: "https://api.cm.anything.agency/notifications/"
     client: true
     type: string
+  discourse_cm_sso_redirect:
+    default: true
+    client: true
