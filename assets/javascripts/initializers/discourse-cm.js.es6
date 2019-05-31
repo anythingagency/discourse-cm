@@ -2,23 +2,6 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 
 function initializeDiscourseCm(api) {
   
-  const siteSettings = container.lookup("site-settings:main");
-
-  if (!siteSettings.discourse_cm_enabled) {
-    return;
-  }
-
-  if (siteSettings.discourse_cm_sso_redirect) {
-    if (typeof localStorage !== 'undefined') {
-      var ssoUrl = Discourse.BaseUri + '/session/sso?return_path=' + window.location.pathname;
-      if (localStorage.getItem("jwt") && !api.getCurrentUser()) {
-        if (!document.referrer.includes(ssoUrl)) {
-          window.location = ssoUrl;
-        }
-      }
-    }
-  }
-
   api.modifyClass('controller:topic', {
     
     actions: {
@@ -86,10 +69,28 @@ function initializeDiscourseCm(api) {
 
 }
 
+// seperate function so it can be enabled seperately
+function initializeDiscourseCmSso(api) {
+  if (typeof localStorage !== 'undefined') {
+    var ssoUrl = Discourse.BaseUri + '/session/sso?return_path=' + window.location.pathname;
+    if (localStorage.getItem("jwt") && !api.getCurrentUser()) {
+      if (!document.referrer.includes(ssoUrl)) {
+        window.location = ssoUrl;
+      }
+    }
+  }
+}
+
 export default {
   name: "discourse-cm",
 
   initialize(container) {
-    withPluginApi("0.8.24", initializeDiscourseCm);
+    const siteSettings = container.lookup("site-settings:main");
+    if (siteSettings.discourse_cm_enabled) {
+      withPluginApi("0.8.24", initializeDiscourseCm);
+      if (siteSettings.discourse_cm_sso_redirect) {
+        withPluginApi("0.8.24", initializeDiscourseCmSso);
+      }
+    } 
   }
 };

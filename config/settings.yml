@@ -10,5 +10,5 @@ plugins:
     client: true
     type: string
   discourse_cm_sso_redirect:
-    default: true
+    default: false
     client: true
