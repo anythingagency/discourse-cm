@@ -1,6 +1,24 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 
 function initializeDiscourseCm(api) {
+
+  // api.decorateWidget('post-menu:after', helper => {
+  //   return helper.h('button', 'Hello');
+  // });
+
+
+  if (!api.getCurrentUser()) {
+    api.addPostMenuButton('reply', () => {
+      return {
+        action: 'showLogin',
+        icon: 'reply',
+        className: 'reply create fade-out',
+        title: 'post.controls.reply',
+        position: 'last',
+        label: 'topic.reply.title',
+      };
+    });
+  }
   
   api.modifyClass('controller:topic', {
     
