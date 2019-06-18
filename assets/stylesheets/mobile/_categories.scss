@@ -70,17 +70,6 @@
   }
 }
 
-// Additional class for handle 'more' link
-//
-.category-list-item-footer {
-  display: flex;
-  justify-content: flex-start;
-
-  a {
-    flex: 1 0 0;
-  }
-}
-
 // Category background images
 // - 9 images in total
 @for $i from 1 through 9 {
@@ -90,5 +79,21 @@
         background-image: url("#{$asset-path-images}decor-#{$i}-sm.png");
       }
     }
+  }
+}
+
+// Mobile category footer
+//
+.category-list-item-footer {
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    // More button
+    &:first-child {
+      color: #ffffff !important;
+    }
+
+    flex: 1 0 0;
   }
 }
