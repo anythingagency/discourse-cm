@@ -76,10 +76,10 @@
 
 .c-notifications-button__count {
     align-items: center;
-    background-color: #fff;
+    background-color: #f55e62;
     border-radius: 50%;
     box-shadow: 0 0 0 0.125rem #57dbe7;
-    color: #878787;
+    color: #ffffff;
     display: flex;
     font-size: .6875rem;
     font-weight: 700;
@@ -144,11 +144,11 @@
 }
 
 .c-nav__label {
-  align-self: flex-end;
-  flex-basis: 100%;
-  padding-bottom: 6px;
-  padding-top: 4px;
-  text-align: center;
+    align-self: flex-end;
+    flex-basis: 100%;
+    padding-bottom: 6px;
+    padding-top: 4px;
+    text-align: center;
 }
 
 // Flex utilities
