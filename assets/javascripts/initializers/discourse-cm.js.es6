@@ -6,16 +6,15 @@ function initializeDiscourseCm(api) {
   //   return helper.h('button', 'Hello');
   // });
 
-
   if (!api.getCurrentUser()) {
     api.addPostMenuButton('reply', () => {
       return {
         action: 'showLogin',
         icon: 'reply',
-        className: 'reply create fade-out',
+        className: (Discourse.Mobile.mobileView ? 'reply create fade-out' : 'reply create fade-out'),
         title: 'post.controls.reply',
         position: 'last',
-        label: 'topic.reply.title',
+        label: (Discourse.Mobile.mobileView ? '' : 'topic.reply.title'),
       };
     });
   }
