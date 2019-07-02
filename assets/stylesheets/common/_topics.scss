@@ -55,3 +55,12 @@
     font-weight: normal;
   }
 }
+
+.show-replies {
+  max-width: none;
+  display: inline-block;
+}
+
+.show-replies .d-button-label {
+  padding-right: 5px;
+}
