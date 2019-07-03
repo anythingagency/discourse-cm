@@ -4,6 +4,9 @@
 
 .d-header {
   box-shadow: none;
+  max-width: 69.375rem;
+  left: 50%;
+  transform: translateX(-50%);
 
   // Topic title and back button colors
   .title-wrapper {
@@ -60,7 +63,6 @@
 // ========================================
 
 .menu-panel {
-
   .panel-body {
     padding-top: 0;
     padding-bottom: 0;

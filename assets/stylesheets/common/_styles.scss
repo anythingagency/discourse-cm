@@ -2,8 +2,14 @@
 // Styles
 // ========================================
 
+body {
+  background-color: #f7f7f7;
+}
+
 #main-outlet {
   padding-top: 4rem;
+  background-color: #ffffff;
+  max-width: 68.375rem !important;
 }
 
 .sr-only {
