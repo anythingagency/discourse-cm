@@ -26,6 +26,8 @@
   }
 }
 
+// Button modifications
+//
 .c-button--circular {
   width: 2.25rem;
   height: 2.25rem;
@@ -43,6 +45,8 @@
   border-color: #fff;
 }
 
+// Header button
+//
 .c-button--header {
   background-size: cover;
   background-position: 50%;
@@ -62,14 +66,14 @@
   outline: 0;
 }
 
+// Search button
+//
 .c-searchbar-button__icon {
   height: .98438rem;
 }
 
-.c-user-button__icon {
-  height: 1.0625rem;
-}
-
+// Notifications button
+//
 .c-notifications-button {
   position: relative;
 }
@@ -78,9 +82,10 @@
   height: 1.0625rem;
 }
 
+// User button
+//
 .c-user-button--logged-out {
   border-radius: 1.125rem;
-  color: #ffffff !important;
   font-family: Gilroy, sans-serif;
   font-size: .6875rem;
   font-weight: 700;
@@ -88,10 +93,14 @@
   padding-left: 1rem;
   padding-right: 1rem;
   text-decoration: none;
+}
 
-  svg {
-    margin-right: .5rem;
-  }
+.c-user-button__icon {
+  height: 1.0625rem;
+}
+
+.c-button--header.c-user-button--logged-out svg {
+  margin-right: .5rem;
 }
 
 .c-notifications-button__count {
@@ -112,6 +121,8 @@
   width: 1.25rem;
 }
 
+// Nav
+//
 .c-nav {
   box-shadow: inset 0 -1px 0 0 #e5e5e5;
 }
@@ -165,10 +176,6 @@
   @media (min-width: 36rem) {
     display: block;
   }
-}
-
-.c-nav__icon--more {
-  //width: 22px;
 }
 
 .c-nav__label {
