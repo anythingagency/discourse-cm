@@ -45,6 +45,11 @@
   border-color: #fff;
 }
 
+.c-button--white:focus:not(:disabled), .c-button--white:hover:not(:disabled) {
+  background-color: #eaeaea;
+  border-color: #eaeaea;
+}
+
 // Header button
 //
 .c-button--header {
@@ -55,6 +60,11 @@
   height: 2.25rem;
   margin: 0 0 0 .9375rem;
   width: 2.25rem;
+
+  &:hover, &:focus, &:visited {
+    color: #57dbe7 !important;
+  }
+
 }
 
 .c-button--header svg g, .c-button--header svg path {
