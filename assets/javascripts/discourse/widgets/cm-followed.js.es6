@@ -102,8 +102,7 @@ createWidget("cm-followed", {
       }
     };
 
-    
-   
+  
     jwt(this.siteSettings.discourse_cm_api_url).then(jwt => {
 
       if (jwt) {
