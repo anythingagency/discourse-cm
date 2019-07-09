@@ -1,5 +1,4 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
-import { jwtRefresh } from "discourse/plugins/discourse-cm/jwt";
 
 function initializeDiscourseCm(api) {
 

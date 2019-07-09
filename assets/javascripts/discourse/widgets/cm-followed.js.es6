@@ -93,35 +93,32 @@ createWidget("cm-followed", {
   },
 
   getFollowed(state) {
+    var self = this;
     
-    let args = {
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Origin": `${window.location.protocol}//${window.location.host}`
-      }
-    };
-
-  
-    jwt(this.siteSettings.discourse_cm_api_url).then(jwt => {
-
-      if (jwt) {
+    jwt('https://staging.api.channelmum.com').then(function(response) {
+      let args = {
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Origin": `${window.location.protocol}//${window.location.host}`
+        }
+      };
+    
+      if (response) {
         args.headers = {
-          "Authorization": `Bearer ${jwt}`,
+          "Authorization": `Bearer ${response}`,
         };
       }
 
-      ajax(this.siteSettings.discourse_cm_api_url + (jwt ? '/me?include=channels,vloggers' : '/guest'), args).then((response) => {
-        let orderedItems = this.pushFeaturedFollowed(this.combineFollowed(response.data.channels.data, response.data.vloggers.data));
+      ajax(self.siteSettings.discourse_cm_api_url + (jwt ? '/me?include=channels,vloggers' : '/guest'), args).then((response) => {
+        let orderedItems = self.pushFeaturedFollowed(self.combineFollowed(response.data.channels.data, response.data.vloggers.data));
         state.followed = orderedItems;
         state.loaded = true;
-  
-        this.scheduleRerender();
+        self.scheduleRerender();
       }).catch((error) => {
         console.log(error);
       });
     });
-    
   },
 
   getGuest(state) {
