@@ -2,5 +2,9 @@ en:
   site_settings:
     discourse_cm_enabled: "Enable CM plugin"
     discourse_cm_notification_enabled: "Check CM API for notifications"
-    discourse_cm_notification_url: "API url for notifications"
+    discourse_cm_api_url: "API url e.g. https://api.channelmum.com"
     discourse_cm_sso_redirect: "Automatically login if JWT set"
+    discourse_cm_followed_featured: "Featured channels/vloggers (JSON)"
+    discourse_cm_cdn_url: "CDN url e.g. https://cdn.channelmum.com"
+
+    

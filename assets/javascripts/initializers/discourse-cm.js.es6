@@ -1,10 +1,7 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { jwtRefresh } from "discourse/plugins/discourse-cm/jwt";
 
 function initializeDiscourseCm(api) {
-
-  // api.decorateWidget('post-menu:after', helper => {
-  //   return helper.h('button', 'Hello');
-  // });
 
   if (!api.getCurrentUser()) {
     api.addPostMenuButton('reply', () => {
@@ -89,7 +86,7 @@ function initializeDiscourseCm(api) {
 // seperate function so it can be enabled seperately
 function initializeDiscourseCmSso(api) {
   if (typeof localStorage !== 'undefined') {
-    var ssoUrl = Discourse.BaseUri + '/session/sso?return_path=' + window.location.pathname;
+    const ssoUrl = Discourse.BaseUri + '/session/sso?return_path=' + window.location.pathname;
     if (localStorage.getItem("jwt") && !api.getCurrentUser()) {
       if (!document.referrer.includes(ssoUrl)) {
         window.location = ssoUrl;

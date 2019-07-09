@@ -9,6 +9,8 @@ enabled_site_setting :discourse_cm_enabled
 
 PLUGIN_NAME ||= "discourse-cm".freeze
 
+register_asset "javascripts/jwt.js.es6"
+
 # Style Assets
 register_asset "stylesheets/common/common.scss"
 register_asset "stylesheets/desktop/desktop.scss", :desktop

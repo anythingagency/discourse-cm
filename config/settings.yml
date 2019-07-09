@@ -5,10 +5,18 @@ plugins:
   discourse_cm_notification_enabled:
     default: true
     client: true
-  discourse_cm_notification_url:
-    default: "https://api.cm.anything.agency/notifications/"
+  discourse_cm_api_url:
+    default: "https://api.channelmum.com"
+    client: true
+    type: string
+  discourse_cm_cdn_url:
+    default: "https://cdn.channelmum.com"
     client: true
     type: string
   discourse_cm_sso_redirect:
     default: false
     client: true
+  discourse_cm_followed_featured:
+    default: "[]"
+    client: true
+    type: string

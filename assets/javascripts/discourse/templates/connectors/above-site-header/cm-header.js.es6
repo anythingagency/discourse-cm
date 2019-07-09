@@ -8,7 +8,7 @@ export default {
 
     withPluginApi("0.8.24", api => {
       const siteSettings = api.container.lookup("site-settings:main");
-      const notificationUrl = siteSettings.discourse_cm_notification_url + (this.currentUser ? this.currentUser.username : '');
+      const notificationUrl = siteSettings.discourse_cm_api_url + '/notifications/' + (this.currentUser ? this.currentUser.username : '');
 
       const checkNotifications = function() {
 
@@ -16,7 +16,7 @@ export default {
           component.set('notifications', response.data.total_new);
         });
 
-        setTimeout(checkNotifications, 10000);
+        setTimeout(checkNotifications, 60000);
       }
 
       if (this.currentUser) {
@@ -27,7 +27,6 @@ export default {
         if (siteSettings.discourse_cm_notification_enabled) {
           checkNotifications();
         }
-
       }
       else {
         this.set('user', false);
