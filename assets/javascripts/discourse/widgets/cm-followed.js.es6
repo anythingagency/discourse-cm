@@ -93,8 +93,6 @@ createWidget("cm-followed", {
   },
 
   getFollowed(state) {
-
-    
     
     let args = {
       headers: {
@@ -107,7 +105,6 @@ createWidget("cm-followed", {
     
    
     jwt(this.siteSettings.discourse_cm_api_url).then(jwt => {
-      const url = (jwt ? this.siteSettings.discourse_cm_followed_user_url : this.siteSettings.discourse_cm_followed_guest_url);  
 
       if (jwt) {
         args.headers = {
