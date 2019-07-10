@@ -20,9 +20,8 @@ export default {
       }
 
       if (this.currentUser) {
-
         this.set('user', true);
-        this.set('userAvatar', this.currentUser.avatar_template.replace('{size}', 64));
+        this.set('userAvatar', this.currentUser.avatar_template.replace('{size}', 44));
 
         if (siteSettings.discourse_cm_notification_enabled) {
           checkNotifications();
