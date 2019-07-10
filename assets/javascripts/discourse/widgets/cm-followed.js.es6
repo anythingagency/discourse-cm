@@ -10,7 +10,7 @@ createWidget("cm-roundel", {
   html(attrs) {
 
     return h('div.c-roundel__wrapper', [
-      h("a.c-roundel__body", { attributes: { href: attrs.href, 'data-auto-route': 'false' } }, [
+      h("a.c-roundel__body", { attributes: { href: attrs.href, 'data-auto-route': 'true' } }, [
         h('div.c-roundel__body__inner', [
           h('div.c-roundel__media', [
             h("div", {
