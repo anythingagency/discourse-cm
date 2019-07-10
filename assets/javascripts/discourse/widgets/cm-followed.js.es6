@@ -95,7 +95,7 @@ createWidget("cm-followed", {
   getFollowed(state) {
     var self = this;
     
-    jwt('https://staging.api.channelmum.com').then(function(response) {
+    jwt(this.siteSettings.discourse_cm_api_url).then(function(response) {
       let args = {
         headers: {
           "Accept": "application/json",
@@ -110,7 +110,7 @@ createWidget("cm-followed", {
         };
       }
 
-      ajax(self.siteSettings.discourse_cm_api_url + (jwt ? '/me?include=channels,vloggers' : '/guest'), args).then((response) => {
+      ajax(self.siteSettings.discourse_cm_api_url + (response ? '/me?include=channels,vloggers' : '/guest'), args).then((response) => {
         let orderedItems = self.pushFeaturedFollowed(self.combineFollowed(response.data.channels.data, response.data.vloggers.data));
         state.followed = orderedItems;
         state.loaded = true;
