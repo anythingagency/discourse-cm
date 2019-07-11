@@ -20,10 +20,10 @@ export function jwt(apiUrl) {
   const decodedJWTRefresh = jwtRefresh ? decodeJWT(jwtRefresh) : null;
   const now = Math.floor(new Date().getTime() / 1000);
 
-  if( (!jwt && decodedJWTRefresh.exp >= now) || (decodedJWT.exp - now <= 86400) ) {
+  if( (!jwt && decodedJWTRefresh.exp >= now) || (decodedJWT.exp - now <= 86400) && (jwtRefresh) ) {
     return fetch(`${apiUrl}/auth/refresh`, {
       body: JSON.stringify({
-        token: localStorage.getItem('jwt-xl')
+        token: jwtRefresh
       }),
       headers: ({
         "Accept": "application/json",
