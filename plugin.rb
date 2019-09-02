@@ -24,6 +24,6 @@ after_initialize do
 
   load File.expand_path('../controllers/base.rb', __FILE__)
   load File.expand_path('../controllers/notice.rb', __FILE__)
-
+  load File.expand_path('../models/about.rb', __FILE__)
   load File.expand_path('../lib/cm.rb', __FILE__)
 end
