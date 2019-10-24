@@ -2,6 +2,5 @@ en:
   js:
     discourse_cm:
 
-    cm_welcome:
-      title: "It takes a village to raise a child so…"
-      message: "Ask or answer questions, share, or just see what’s going on"
+    cm_anon_message:
+      title: "You've found a safe place to talk where you can even post anonymously. <a href='#'>Find out more here</a>"

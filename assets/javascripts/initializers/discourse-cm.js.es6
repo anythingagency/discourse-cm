@@ -1,7 +1,17 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { applyDecorators } from "discourse/widgets/widget";
+import { userPath } from "discourse/lib/url";
 
 function initializeDiscourseCm(api) {
 
+  api.replaceIcon('link', 'share');
+
+  api.changeWidgetSetting('post-menu', 'showReplyTitleOnMobile', true);
+  api.changeWidgetSetting('hamburger-menu', 'showFAQ', false);
+  api.changeWidgetSetting('hamburger-menu', 'showAbout', false);
+  api.changeWidgetSetting('hamburger-menu', 'showCategories', false);
+  
+  // add reply button when not logged in
   if (!api.getCurrentUser()) {
     api.addPostMenuButton('reply', () => {
       return {
@@ -14,7 +24,200 @@ function initializeDiscourseCm(api) {
       };
     });
   }
+
+  // remove topic-map box from first post
+  api.reopenWidget("post-body", {
+
+    html(attrs, state) {
+      const postContents = this.attach("post-contents", attrs);
+      let result = [this.attach("post-meta-data", attrs)];
+      result = result.concat(
+        applyDecorators(this, "after-meta-data", attrs, state)
+      );
+      result.push(postContents);
+      result.push(this.attach("actions-summary", attrs));
+      result.push(this.attach("post-links", attrs));
+
+      return result;
+    }
+
+  });
+
+  // tweak which icons are shown in header
+  api.reopenWidget("header-icons", {
+
+    html(attrs) {
+      if (!this.currentUser) {
+        return [];
+      }
   
+      const hamburger = this.attach("header-dropdown", {
+        title: "hamburger_menu",
+        icon: "bars",
+        iconId: "toggle-hamburger-menu",
+        active: attrs.hamburgerVisible,
+        action: "toggleHamburger",
+        href: "",
+        contents() {
+          let { currentUser } = this;
+          if (currentUser && currentUser.reviewable_count) {
+            return h(
+              "div.badge-notification.reviewables",
+              {
+                attributes: {
+                  title: I18n.t("notifications.reviewable_items")
+                }
+              },
+              this.currentUser.reviewable_count
+            );
+          }
+        }
+      });
+  
+      const icons = [hamburger];
+    
+      return icons;
+    }
+
+  });
+
+  // Make embed link a button
+  api.decorateCooked(
+    $elem => $elem.find('.cm-embed-button a').addClass('btn-large btn btn-text ember-view').text('Read more'),
+     { id: 'cm-embed-button' }
+  );
+
+  // tweak links in hamburger menu
+  const flatten = array => [].concat.apply([], array);
+  api.reopenWidget("hamburger-menu", {
+    
+
+    panelContents() {
+      const { currentUser } = this;
+      const results = [];
+  
+      if (currentUser && currentUser.staff) {
+        results.push(
+          this.attach("menu-links", {
+            name: "admin-links",
+            contents: () => {
+              const extraLinks = flatten(
+                applyDecorators(this, "admin-links", this.attrs, this.state)
+              );
+              return this.adminLinks().concat(extraLinks);
+            }
+          })
+        );
+      }
+
+      if (api.getCurrentUser()) {
+        results.push(
+          this.attach("menu-links", {
+            name: "user-links",
+            contents: () => this.userLinks()
+          })
+        );
+      }
+      
+  
+      results.push(
+        this.attach("menu-links", {
+          name: "general-links",
+          contents: () => this.generalLinks()
+        })
+      );
+  
+      return results;
+    },
+
+    userLinks() {
+      const { siteSettings } = this;
+      
+      const links = [];
+
+      const path = this.currentUser.get("path");
+      if (siteSettings.enable_personal_messages) {
+        links.push({
+          label: "user.private_messages",
+          className: "user-pms-link",
+          icon: "envelope",
+          href: `${path}/messages`
+        });
+      }
+
+      links.push({
+        label: "user.preferences",
+        className: "user-preferences-link",
+        icon: "user",
+        href: `${path}/preferences/account`
+      });
+
+      const userLinks = flatten(
+        applyDecorators(this, "generalLinks", this.attrs, this.state)
+      );
+      return links.concat(userLinks).map(l => this.attach("link", l));
+    },
+
+    generalLinks() {
+      const { siteSettings } = this;
+      
+      const links = [];
+  
+      links.push({
+        route: "discovery.latest",
+        className: "latest-topics-link",
+        label: "filters.latest.title",
+        title: "filters.latest.help"
+      });
+
+      if (this.currentUser) {
+        const path = this.currentUser.get("path");
+
+        links.push({
+          route: "discovery.posted",
+          className: "posted-link",
+          label: "filters.posted.title",
+          title: "filters.posted.help"
+        });
+
+        links.push({
+          label: "user.bookmarks",
+          className: "user-bookmarks-link",
+          href: `${path}/activity/bookmarks`
+        });
+      }
+      
+  
+      // Staff always see the review link. Non-staff will see it if there are items to review
+      if (
+        this.currentUser &&
+        (this.currentUser.staff || this.currentUser.reviewable_count)
+      ) {
+        links.push({
+          route: siteSettings.reviewable_default_topics
+            ? "review.topics"
+            : "review",
+          className: "review",
+          label: "review.title",
+          badgeCount: "reviewable_count",
+          badgeClass: "reviewables"
+        });
+      }
+
+      links.push({
+        label: "search.advanced.title",
+        className: "advanced-search-link",
+        href: Discourse.getURL("/search")
+      });
+  
+      const extraLinks = flatten(
+        applyDecorators(this, "generalLinks", this.attrs, this.state)
+      );
+      return links.concat(extraLinks).map(l => this.attach("link", l));
+    },
+  });
+  
+  // add additonal page views when scrolling
   api.modifyClass('controller:topic', {
     
     actions: {

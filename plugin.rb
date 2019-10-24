@@ -11,11 +11,6 @@ PLUGIN_NAME ||= "discourse-cm".freeze
 
 register_asset "javascripts/jwt.js.es6"
 
-# Style Assets
-register_asset "stylesheets/common/common.scss"
-register_asset "stylesheets/desktop/desktop.scss", :desktop
-register_asset "stylesheets/mobile/mobile.scss", :mobile
-
 after_initialize do
 
   require_dependency 'plugin_store'
