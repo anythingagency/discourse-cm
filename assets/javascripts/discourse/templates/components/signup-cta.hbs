@@ -1,0 +1,15 @@
+<div class="signup-cta alert alert-info">
+  {{#if session.hideSignupCta}}
+    <p>
+      {{i18n "signup_cta.hidden_for_session"}}
+    </p>
+  {{else}}
+    <p>{{replace-emoji (i18n "signup_cta.intro")}}</p>
+    <p>{{replace-emoji (i18n "signup_cta.value_prop")}}</p>
+
+    <div class="buttons">
+      {{d-button action=(route-action "showCreateAccount") label="signup_cta.sign_up" icon="check" class="btn-primary"}}
+    </div>
+  {{/if}}
+  <div class="clearfix"></div>
+</div>

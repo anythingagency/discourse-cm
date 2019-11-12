@@ -20,7 +20,7 @@ function initializeDiscourseCm(api) {
         className: (Discourse.Mobile.mobileView ? 'reply create fade-out' : 'reply create fade-out'),
         title: 'post.controls.reply',
         position: 'last',
-        label: (Discourse.Mobile.mobileView ? '' : 'topic.reply.title'),
+        label: 'topic.reply.title',
       };
     });
   }
