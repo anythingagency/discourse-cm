@@ -46,14 +46,14 @@ export default {
                 action: "toggleAnonymous",
                 className: "enable-anonymous",
                 icon: "user-secret",
-                label: "switch_to_anon"
+                label: "js.cm_anon_message.enable"
               });
             } else {
               return this.attach("link", {
                 action: "toggleAnonymous",
                 className: "disable-anonymous",
                 icon: "ban",
-                label: "switch_from_anon"
+                label: "js.cm_anon_message.disable"
               });
             }
           }   

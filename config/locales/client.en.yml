@@ -3,4 +3,6 @@ en:
     discourse_cm:
 
     cm_anon_message:
-      title: "You've found a safe place to talk where you can even post anonymously. <a href='#'>Find out more here</a>"
+      title: "You've found a safe place to talk where you can even post anonymously. <a href='https://www.channelmum.com/chat/t/how-can-i-post-anonymously-please/24979/5'>Find out more here</a>"
+      enable: "Click here to make your posts anonymous"
+      disable: "Exit Anonymous Mode"

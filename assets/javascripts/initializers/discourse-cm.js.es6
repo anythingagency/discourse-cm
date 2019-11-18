@@ -1,5 +1,6 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { applyDecorators } from "discourse/widgets/widget";
+import { h } from "virtual-dom";
 import { userPath } from "discourse/lib/url";
 
 function initializeDiscourseCm(api) {
@@ -9,7 +10,9 @@ function initializeDiscourseCm(api) {
   api.changeWidgetSetting('post-menu', 'showReplyTitleOnMobile', true);
   api.changeWidgetSetting('hamburger-menu', 'showFAQ', false);
   api.changeWidgetSetting('hamburger-menu', 'showAbout', false);
-  api.changeWidgetSetting('hamburger-menu', 'showCategories', false);
+  api.changeWidgetSetting('hamburger-menu', 'showCategories', true);
+
+
   
   // add reply button when not logged in
   if (!api.getCurrentUser()) {
@@ -126,13 +129,25 @@ function initializeDiscourseCm(api) {
           contents: () => this.generalLinks()
         })
       );
+
+
+      if (this.settings.showCategories) {
+        results.push(this.listCategories());
+        results.push(h("hr"));
+      }
   
       return results;
     },
 
     userLinks() {
       const { siteSettings } = this;
-      
+      const isAnon = this.currentUser.is_anonymous;
+      const allowAnon =
+        (siteSettings.allow_anonymous_posting &&
+          this.currentUser.trust_level >=
+            siteSettings.anonymous_posting_min_trust_level) ||
+        isAnon;
+
       const links = [];
 
       const path = this.currentUser.get("path");
@@ -151,6 +166,24 @@ function initializeDiscourseCm(api) {
         icon: "user",
         href: `${path}/preferences/account`
       });
+
+      if (allowAnon) {
+        if (!isAnon) {
+          links.push({
+            action: "toggleAnonymous",
+            label: "switch_to_anon",
+            className: "enable-anonymous",
+            icon: "user-secret"
+          });
+        } else {
+          links.push({
+            action: "toggleAnonymous",
+            label: "switch_from_anon",
+            className: "disable-anonymous",
+            icon: "ban"
+          });
+        }
+      }
 
       const userLinks = flatten(
         applyDecorators(this, "generalLinks", this.attrs, this.state)
