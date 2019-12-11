@@ -7,7 +7,24 @@ function initializeDiscourseCm(api) {
 
   api.replaceIcon('link', 'share');
   api.replaceIcon('far-comment', 'quote-right');
+  api.replaceIcon('upload', 'image');
 
+  if (Discourse.Mobile.mobileView) {
+    api.onToolbarCreate(function(toolbar) {
+      toolbar.addButton({
+        trimLeading: true,
+        id: "toolbarMobileUpload",
+        group: "insertions",
+        icon: 'upload',
+        title: "js.upload_selector.title",
+        perform: function(e) {
+          $("#mobile-uploader").click();
+        }
+      });
+    });
+  }
+
+ 
   api.changeWidgetSetting('post-menu', 'showReplyTitleOnMobile', true);
   api.changeWidgetSetting('hamburger-menu', 'showFAQ', false);
   api.changeWidgetSetting('hamburger-menu', 'showAbout', false);
@@ -333,7 +350,6 @@ function initializeDiscourseCm(api) {
   
       this.groups[this.groups.length - 1].lastGroup = true;
     }
-  
 
 
   });
