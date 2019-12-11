@@ -132,7 +132,7 @@ createWidget("cm-followed", {
     let result = [];
 
     result.push(this.attach("cm-roundel", {
-      title: 'Add Channels',
+      title: 'All Channels',
       href: '/channels',
       media: this.getMediaAddChannel()
     }));

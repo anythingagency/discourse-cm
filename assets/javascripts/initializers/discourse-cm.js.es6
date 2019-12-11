@@ -6,14 +6,13 @@ import { userPath } from "discourse/lib/url";
 function initializeDiscourseCm(api) {
 
   api.replaceIcon('link', 'share');
+  api.replaceIcon('far-comment', 'quote-right');
 
   api.changeWidgetSetting('post-menu', 'showReplyTitleOnMobile', true);
   api.changeWidgetSetting('hamburger-menu', 'showFAQ', false);
   api.changeWidgetSetting('hamburger-menu', 'showAbout', false);
   api.changeWidgetSetting('hamburger-menu', 'showCategories', true);
 
-
-  
   // add reply button when not logged in
   if (!api.getCurrentUser()) {
     api.addPostMenuButton('reply', () => {
@@ -248,6 +247,95 @@ function initializeDiscourseCm(api) {
       );
       return links.concat(extraLinks).map(l => this.attach("link", l));
     },
+  });
+
+  // add additonal page views when scrolling
+  api.modifyClass('component:d-editor', {
+
+    constructor(opts) {
+      const { siteSettings } = opts;
+      this.shortcuts = {};
+      this.context = null;
+  
+      this.groups = [
+        { group: "fontStyles", buttons: [] },
+        { group: "insertions", buttons: [] },
+        { group: "extras", buttons: [] }
+      ];
+  
+      this.addButton({
+        trimLeading: true,
+        id: "italic",
+        group: "fontStyles",
+        icon: "italic",
+        label: getButtonLabel("composer.italic_label", "I"),
+        shortcut: "I",
+        perform: e => e.applySurround("*", "*", "italic_text")
+      });
+  
+      if (opts.showLink) {
+        this.addButton({
+          id: "link",
+          group: "insertions",
+          shortcut: "K",
+          action: (...args) => this.context.send("showLinkModal", args)
+        });
+      }
+  
+      this.addButton({
+        id: "quote",
+        group: "insertions",
+        icon: "quote-right",
+        shortcut: "Shift+9",
+        perform: e =>
+          e.applyList("> ", "blockquote_text", {
+            applyEmptyLines: true,
+            multiline: true
+          })
+      });
+  
+      this.addButton({
+        id: "code",
+        group: "insertions",
+        shortcut: "Shift+C",
+        action: (...args) => this.context.send("formatCode", args)
+      });
+  
+      this.addButton({
+        id: "bullet",
+        group: "extras",
+        icon: "list-ul",
+        shortcut: "Shift+8",
+        title: "composer.ulist_title",
+        perform: e => e.applyList("* ", "list_item")
+      });
+  
+      this.addButton({
+        id: "list",
+        group: "extras",
+        icon: "list-ol",
+        shortcut: "Shift+7",
+        title: "composer.olist_title",
+        perform: e =>
+          e.applyList(i => (!i ? "1. " : `${parseInt(i) + 1}. `), "list_item")
+      });
+  
+      if (siteSettings.support_mixed_text_direction) {
+        this.addButton({
+          id: "toggle-direction",
+          group: "extras",
+          icon: "exchange-alt",
+          shortcut: "Shift+6",
+          title: "composer.toggle_direction",
+          perform: e => e.toggleDirection()
+        });
+      }
+  
+      this.groups[this.groups.length - 1].lastGroup = true;
+    }
+  
+
+
   });
   
   // add additonal page views when scrolling
