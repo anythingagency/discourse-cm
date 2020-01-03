@@ -8,6 +8,7 @@ function initializeDiscourseCm(api) {
   api.replaceIcon('link', 'share');
   api.replaceIcon('far-comment', 'quote-right');
   api.replaceIcon('upload', 'image');
+  api.replaceIcon('cog', 'angle-down');
 
   if (Discourse.Mobile.mobileView) {
     api.onToolbarCreate(function(toolbar) {
@@ -23,7 +24,6 @@ function initializeDiscourseCm(api) {
       });
     });
   }
-
  
   api.changeWidgetSetting('post-menu', 'showReplyTitleOnMobile', true);
   api.changeWidgetSetting('hamburger-menu', 'showFAQ', false);
