@@ -16,32 +16,8 @@
               {{category-title-link category=c}}
               <div class="category-description">
                 {{{dir-span c.description_excerpt}}}
-            
               </div>
-                   {{#if c.subcategories}}
-              <div class='subcategories'>
-                {{#each c.subcategories as |s|}}
-                  <span class='subcategory'>
-                    {{category-title-before category=s}}
-                    {{category-link s hideParent="true"}}
-                    {{category-unread category=s}}
-                  </span>
-                {{/each}}
-              </div>
-            {{/if}}
-           
           </td>
-          <td class="topics">
-            <div title={{c.statTitle}}>{{{c.stat}}}</div>
-            {{category-unread category=c tagName="div" class="unread-new"}}
-          </td>
-          {{#if showTopics}}
-            <td class="latest">
-              {{#each c.featuredTopics as |t|}}
-                {{featured-topic topic=t latestTopicOnly=latestTopicOnly}}
-              {{/each}}
-            </td>
-          {{/if}}
         </tr>
       {{/each}}
     </tbody>
